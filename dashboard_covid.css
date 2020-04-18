@@ -1,0 +1,22 @@
+#card_case {
+    font-size: 30px;
+    color: #0413dc;
+    font-weight: bold;
+}
+
+#card_death {
+    font-size: 30px;
+    color: #dc0404;
+    font-weight: bold;
+}
+
+#card_lethality {
+    font-size: 30px;
+    color: #fab821;
+    font-weight: bold;
+}
+
+.card_sub_text {
+    font-size: 20px;
+    font-weight: bold;
+}
