@@ -1,6 +1,11 @@
-#header_panel {
+#header_panel h2 {
     font-weight: bold;
 }
+
+.update_p {
+    color: #8498ae;
+}
+
 
 #card_case {
     font-size: 30px;
