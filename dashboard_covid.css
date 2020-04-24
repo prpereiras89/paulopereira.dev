@@ -6,6 +6,7 @@
     color: #8498ae;
 }
 
+
 #card_case {
     font-size: 30px;
     color: #0413dc;
@@ -27,4 +28,15 @@
 .card_sub_text {
     font-size: 20px;
     font-weight: bold;
+}
+
+
+.table-fixed tbody {
+    height: 300px;
+    overflow-y: auto;
+    width: 100%;
+}
+
+#div_table {
+    max-height: 444px;
 }
