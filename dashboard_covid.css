@@ -71,3 +71,7 @@
     top: 0px; display:none;
     background-color:white;
 }
+
+.card-text {
+    border-top: solid 1px lightgray;
+}
