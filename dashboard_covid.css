@@ -40,3 +40,34 @@
 #div_table {
     max-height: 444px;
 }
+
+.table {
+    text-align: center;
+    border: none;
+}
+
+.table th {
+
+    width: 25%;
+    text-align: center;
+    border-left: none;
+    border-right: none;
+    border-top: none;
+
+}
+
+.table td {
+
+    width: 25%;
+    text-align: center;
+    border-left: none;
+    border-right: none;
+    border-top: none;
+
+}
+
+.header-fixed { 
+    position: fixed; 
+    top: 0px; display:none;
+    background-color:white;
+}
