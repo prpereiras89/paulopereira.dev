@@ -19,6 +19,8 @@ warnings.filterwarnings("ignore")
 
 df = pd.read_excel("/home/paulinho/Downloads/HIST_PAINEL_COVIDBR_20mai2020.xlsx", sheet_name="Sheet 1")
 
+print("preprocessing data")
+
 df_aux = df.copy()
 df_aux['data'] = pd.to_datetime(df_aux['data'], dayfirst=True)
 df_aux2 = df_aux.groupby(['data','estado']).sum()
@@ -28,76 +30,100 @@ rows = df_aux['data'].unique()
 columns = df_aux['estado'].unique()
 columns = columns[1:]
 
-new_df = pd.DataFrame(0, index=rows, columns=columns)
 
+def preprocess_df(column):
+    df = pd.DataFrame(0, index=rows, columns=columns)
 
-for i in new_df.index:
-    new_df.loc[i] = pd.Series(df_aux2['obitosAcumulado'][i])
+    for i in df.index:
+        df.loc[i] = pd.Series(df_aux2[column][i])
 
-new_df.fillna(value=0, inplace=True)
-new_df = new_df.astype(int)
+    df.fillna(value=0, inplace=True)
+    df = df.astype(int)
 
+    return df
 
 def get_rgb_vals():
     r = np.random.randint(1,255)
     g = np.random.randint(1,255)
     b = np.random.randint(1,255)
     return [r,g,b]
-colors = []
-for i in range(len(new_df.columns)):
-    c = get_rgb_vals()
-    colors.append("rgb(" + str(c[0]) + ","+ str(c[1]) + ","+ str(c[2]) + ")")
 
 def get_top_10(d):
     
     data = d.sort_values()
-    return data.iloc[-10:,]
+    color_aux = []
+    
+    for i in data.iloc[-10:,].index:
+        color_aux.append(dcolors[i])
+    return data.iloc[-10:,], color_aux
+
 
 print("Gerando os frames")
 
-listOfFrames = []
-count = 10
-for i in new_df.index:
-    count += 141
-    d = new_df.loc[i]
-    pdata = get_top_10(d)
-    data = str(i).split(" ")
-    listOfFrames.append(go.Frame(data = [go.Bar(x = pdata, y = pdata.index,
-                                                marker_color = colors, text = pdata.index,
-                                                textposition = "outside",
-                                                texttemplate = "%{y}<br>%{x:s}",cliponaxis = False,orientation='h')],
-                                 layout = go.Layout(
-                                     font = {"size":20},
-                                     height = 700,
-                                     xaxis = {"showline":False,"tickangle":-90, "visible":False, "range":[0,12000]},
-                                     yaxis = {"showline":False, "visible":False},
-                                    title = "Óbitos no dia: " + data[0])))
-    
-fdata = get_top_10(new_df.loc["2020-02-26"])
+def bar_chart_race(df, title, start_date):
+
+    df = df[df.index >= start_date]
+    limit_range = max(df.max())
+    listOfFrames = []
+
+    for i in df.index:
+        d = df.loc[i]
+        pdata, color_aux = get_top_10(d)
+        data = str(i).split(" ")
+        listOfFrames.append(go.Frame(data = [go.Bar(x = pdata, y = pdata.index,
+                                                    marker_color = color_aux, text = pdata.index,
+                                                    textposition = "outside",
+                                                    texttemplate = "%{y}<br>%{x:s}",cliponaxis = False,orientation='h')],
+                                    layout = go.Layout(
+                                        font = {"size":20},
+                                        height = 700,
+                                        xaxis = {"showline":False,"tickangle":-90, "visible":False, "range":[0,limit_range]},
+                                        yaxis = {"showline":False, "visible":False},
+                                        title = title + " no dia: " + data[0])))
+        
+    fdata, color_aux = get_top_10(df.loc[start_date])
 
 
-fig = go.Figure(
-data = [go.Bar(x = fdata, y = fdata.index,
-               marker_color = colors,text = fdata.index,
-              textposition = "outside",
-               texttemplate = "%{y}<br>%{x:s}",cliponaxis = False,orientation='h')],
-layout=go.Layout(
-    title= "Óbitos no dia: " + "2020-02-26",
-    font = {"size":20},
-    height = 700,
-    xaxis = {"showline":False,"tickangle":-90, "visible":False,"range":[0,12000]},
-    yaxis = {"showline":False, "visible":False},
-    updatemenus=[dict(
-        type="buttons",
-        buttons=[dict(label="Play",
-                      method="animate",
-                      args=[None])])]
-),
-frames=list(listOfFrames)
-)
+    fig = go.Figure(
+    data = [go.Bar(x = fdata, y = fdata.index,
+                marker_color = color_aux, text = fdata.index,
+                textposition = "outside",
+                texttemplate = "%{y}<br>%{x:s}",cliponaxis = False,orientation='h')],
+    layout=go.Layout(
+        title= title + " no dia: " + start_date,
+        font = {"size":20},
+        height = 700,
+        xaxis = {"showline":False,"tickangle":-90, "visible":False,"range":[0,limit_range]},
+        yaxis = {"showline":False, "visible":False},
+        updatemenus=[dict(
+            type="buttons",
+            buttons=[dict(label="Play",
+                        method="animate",
+                        args=[None])])]
+    ),
+    frames=list(listOfFrames)
+    )
+
+    return fig
 
 
-print("Gerando o index")
+
+
+df_deaths = preprocess_df('obitosAcumulado')
+df_cases = preprocess_df('casosAcumulado')
+
+colors = []
+for i in range(len(df_deaths.columns)):
+    c = get_rgb_vals()
+    colors.append("rgb(" + str(c[0]) + ","+ str(c[1]) + ","+ str(c[2]) + ")")
+
+dcolors = dict(zip(columns, colors))
+
+bar_race_deaths = bar_chart_race(df_deaths, "Óbitos", "2020-03-15")
+bar_race_cases = bar_chart_race(df_cases, "Casos","2020-02-26")
+
+
+print("Gerando o index.html")
 
 f = open("index.html", "w")
 f.write(
@@ -123,7 +149,19 @@ f.write(
                     <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">Óbitos por estado (Bar chart race)</h5>
-                        <p class="card-text">''' + plotly.offline.plot(fig, include_plotlyjs=False, output_type='div') + '''</p>
+                        <p class="card-text">''' + plotly.offline.plot(bar_race_deaths, include_plotlyjs=False, output_type='div') + '''</p>
+                    </div>
+                    </div>
+                </div> 
+            </div>
+            ''' +
+
+            '''<div class="row row-cols-1 row-cols-md-1">
+                <div class="col mb-4">
+                    <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Casos por estado (Bar chart race)</h5>
+                        <p class="card-text">''' + plotly.offline.plot(bar_race_cases, include_plotlyjs=False, output_type='div') + '''</p>
                     </div>
                     </div>
                 </div> 
