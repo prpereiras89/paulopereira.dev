@@ -17,7 +17,7 @@ import chardet
 warnings.filterwarnings("ignore")
 
 
-df = pd.read_excel("/home/paulinho/Downloads/HIST_PAINEL_COVIDBR_21mai2020.xlsx", sheet_name="Sheet 1")
+df = pd.read_excel("/home/paulinho/Downloads/HIST_PAINEL_COVIDBR_22mai2020.xlsx", sheet_name="Sheet 1")
 
 print("preprocessing data")
 
