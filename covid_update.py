@@ -173,17 +173,15 @@ with urlopen('https://raw.githubusercontent.com/datalivre/Conjunto-de-Dados/mast
     states = json.load(response)
 
 
-def maps_fig(df, labels, color):
+def maps_fig(df, labels, color, scale):
 
     global states
+    
+    df.rename(columns={'casosAcumulado':'Casos','obitosAcumulado':'Obitos','estado':'Estado'}, inplace=True)
 
-    df_aux_maps = df.copy()
-    df_aux_maps.rename(columns={'casosAcumulado':'Casos','obitosAcumulado':'Obitos','estado':'Estado'}, 
-                    inplace=True)
-
-    fig = px.choropleth_mapbox(df_aux_maps, geojson=states, locations="Estado", color=color,
-                            color_continuous_scale="OrRd",
-                            range_color=(0, int(max(df_aux_maps[color]))),
+    fig = px.choropleth_mapbox(df, geojson=states, locations="Estado", color=color,
+                            color_continuous_scale=scale,
+                            range_color=(0, int(max(df[color]))),
                             mapbox_style="carto-positron",
                             zoom=3, center = {"lat": -15.77972, "lon": -47.92972},
                             opacity=0.5,
@@ -334,9 +332,11 @@ bar_race_cases = bar_chart_race(df_cases, "Casos","2020-02-26")
 
 
 
+df_aux = df[df['regiao'] != 'Brasil'].groupby(['estado'])['casosAcumulado','obitosAcumulado'].max()
+df_aux = df_aux.reset_index()
+fig_map_deaths = maps_fig(df_aux, {'Obitos':'Óbitos'}, 'Obitos', "OrRd")
+fig_map_cases = maps_fig(df_aux, {'Casos':'Casos'}, 'Casos', "Blues")
 
-fig_map_deaths = maps_fig(df, {'Obitos':'Óbitos'}, 'Obitos')
-fig_map_cases = maps_fig(df, {'Casos':'Casos'}, 'Casos')
 
 fig_cases_region_pie = fig_pie(df, "casosNovos", 'Casos')
 fig_deaths_region_pie = fig_pie(df, 'obitosNovos', "Obitos")
@@ -501,7 +501,7 @@ with open("index.html", "w") as f:
 
 
     f.write(add_div(bar_race_deaths, 1, "Óbitos por estado (Bar chart race)"))
-    f.write(add_div(bar_race_deaths, 1, "Casos por estado (Bar chart race)"))
+    f.write(add_div(bar_race_cases, 1, "Casos por estado (Bar chart race)"))
 
 
     f.write(add_div([fig_map_cases,fig_map_deaths], 2, ["Casos no Brasil",'Óbitos no Brasil']))
