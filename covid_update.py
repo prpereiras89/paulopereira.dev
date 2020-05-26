@@ -338,8 +338,8 @@ fig_map_deaths = maps_fig(df_aux, {'Obitos':'Óbitos'}, 'Obitos', "OrRd")
 fig_map_cases = maps_fig(df_aux, {'Casos':'Casos'}, 'Casos', "Blues")
 
 
-fig_cases_region_pie = fig_pie(df, "casosNovos", 'Casos')
-fig_deaths_region_pie = fig_pie(df, 'obitosNovos', "Obitos")
+fig_cases_region_pie = fig_pie(df[df['regiao'] != 'Brasil'], "casosNovos", 'Casos')
+fig_deaths_region_pie = fig_pie(df[df['regiao'] != 'Brasil'], 'obitosNovos', "Obitos")
 
 df_aux = df.groupby(['data']).sum()
 fig_cases_total = fig_n_trace(df_aux, ['casosAcumulado', 'obitosAcumulado'], ['Casos', 'Óbitos'])
@@ -500,8 +500,8 @@ with open("index.html", "w") as f:
 
 
 
-    f.write(add_div(bar_race_deaths, 1, "Óbitos por estado (Bar chart race)"))
-    f.write(add_div(bar_race_cases, 1, "Casos por estado (Bar chart race)"))
+    f.write(add_div(bar_race_deaths, 1, "Dez estados com mais óbitos (Bar chart race)"))
+    f.write(add_div(bar_race_cases, 1, "Dez estados com mais casos (Bar chart race)"))
 
 
     f.write(add_div([fig_map_cases,fig_map_deaths], 2, ["Casos no Brasil",'Óbitos no Brasil']))
@@ -512,14 +512,14 @@ with open("index.html", "w") as f:
 
     f.write(add_div([fig_bar_cases_region,fig_cases_region_line], 2, ["Casos totais em barra por região",'Casos por região']))
 
-    f.write(add_div([fig_lethality_brasil_line,fig_cases_region_line], 2, ["Letalidade no Brasil",'Casos por região']))
+    f.write(add_div([fig_lethality_brasil_line,fig_cases_region_line], 2, ["Letalidade no Brasil (%)",'Casos por região']))
 
 
     f.write( '''<div class="row row-cols-1 row-cols-md-2">
                 <div class="col mb-4">
                     <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">Letalidade por região</h5>
+                        <h5 class="card-title">Letalidade por estado</h5>
                         <div id="div_table" class="table-responsive card-text">''' + df_lethality.to_html(classes="table table-1 table-fixed table_lethality") + '''</div>
                     </div>
                     </div>
@@ -529,7 +529,7 @@ with open("index.html", "w") as f:
                 <div class="col mb-4">
                     <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">Letalidade por região</h5>
+                        <h5 class="card-title">Letalidade por região (%)</h5>
                         <div class="table-responsive card-text">''' + plotly.offline.plot(fig_lethality_region_line, include_plotlyjs=False, output_type='div') + '''</div>
                     </div>
                     </div>
