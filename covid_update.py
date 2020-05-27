@@ -202,11 +202,18 @@ def fig_n_trace(df, column, name):
     fig = go.Figure()
 
     if isinstance(column, list):
-        for i in range(len(name)):
-            fig.add_trace(go.Scatter(x=df.index, y=df[column[i]].values,
-                            mode='lines+markers',
-                            name=name[i],
-                            fill='tozeroy'))
+        if len(name) > 2:
+            for i in range(len(name)):
+                fig.add_trace(go.Scatter(x=df.index, y=df[column[i]].values,
+                                mode='lines+markers',
+                                name=name[i]))
+
+        else:
+            for i in range(len(name)):
+                fig.add_trace(go.Scatter(x=df.index, y=df[column[i]].values,
+                                mode='lines+markers',
+                                name=name[i],
+                                fill='tozeroy'))
 
     elif isinstance(column, str):
         fig.add_trace(go.Scatter(x=df.index, y=df[column].values,
@@ -269,6 +276,37 @@ def fig_pie(df, column, name):
 
 ###----------------------------------------------------------------------------------------------------------------------
 
+
+###------------------------------------------------- FORECASTING CHART ARIMA -------------------------------------------------------
+def forecasting_arima(df, column):
+
+    df = df.asfreq('d')
+
+
+    base = df[column].index[-1] + datetime.timedelta(days=1)
+    date_list = [base + datetime.timedelta(days=x) for x in range(15)]
+
+
+    model = auto_arima(df[column], m = 5, max_p = 5, max_q = 5, max_P = 5, max_Q = 5)
+    df_auto_pred = pd.DataFrame(model.predict(n_periods = 15), index = date_list)
+
+
+    df_a = df_auto_pred.astype({0: int})
+    df_aux2 = [df_a.values[x][0] for x in range(0,len(df_a))]
+
+    fig = go.Figure()
+    fig.add_trace(go.Scatter(x=df[column].index, y=df[column].values,
+                        mode='lines+markers',
+                        name='Confirmados',
+                        fill='tozeroy'))
+    fig.add_trace(go.Scatter(x=df_a.index, y=df_aux2,
+                        mode='lines+markers',
+                        name='Previsão',
+                        fill='tozeroy'))
+    fig.update_layout(legend=dict(x=0, y=1),margin={"r":0,"t":10,"l":0,"b":0},title= "Arima(" + str(model.order) + ")")
+
+    return fig
+###----------------------------------------------------------------------------------------------------------------------
 
 
 ###------------------------------------------- ADDING DIV -------------------------------------------------------------
@@ -344,7 +382,7 @@ fig_map_cases = maps_fig(df_aux, {'Casos':'Casos'}, 'Casos', "Blues")
 fig_cases_region_pie = fig_pie(df[df['regiao'] != 'Brasil'], "casosNovos", 'Casos')
 fig_deaths_region_pie = fig_pie(df[df['regiao'] != 'Brasil'], 'obitosNovos', "Obitos")
 
-df_aux = df.groupby(['data']).sum()
+df_aux = df[df['regiao'] == 'Brasil'].groupby(['data'])['casosAcumulado','obitosAcumulado','casosNovos','obitosNovos'].sum()
 fig_cases_total = fig_n_trace(df_aux, ['casosAcumulado', 'obitosAcumulado'], ['Casos', 'Óbitos'])
 fig_new_cases = fig_n_trace(df_aux, ['casosNovos', 'obitosNovos'], ['Casos', 'Óbitos'])
 
@@ -428,6 +466,25 @@ df_lethality
 
 
 
+###------------------------------------------------------------ FORECASTING ARIMA --------------------------------------------------------------------
+df_aux = df[df['regiao'] == 'Brasil'].groupby(['data'])['casosAcumulado','obitosAcumulado','casosNovos','obitosNovos'].sum()
+
+print("forecasting new cases using auto.arima...")
+fig_pred_cases = forecasting_arima(df_aux, 'casosNovos')
+
+print("forecasting new deaths using auto.arima...")
+fig_pred_deaths = forecasting_arima(df_aux, 'obitosNovos')
+
+print("forecasting totol cases using auto.arima...")
+fig_pred_total_cases = forecasting_arima(df_aux, 'casosAcumulado')
+
+print("forecasting total deaths using auto.arima...")
+fig_pred_total_deaths = forecasting_arima(df_aux, 'obitosAcumulado')
+
+print("forecasting lethality using auto.arima...")
+df_aux['letalidade'] = 100*(df_aux['obitosAcumulado']/df_aux['casosAcumulado'])
+df_aux['letalidade'].fillna(0, inplace=True)
+fig_pred_lethality_br = forecasting_arima(df_aux, 'letalidade')
 
 
 ###--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -456,6 +513,47 @@ fig_br_deaths_world_deaths = fig_n_trace(df_deaths_world, ['Brazil','Germany','A
 
 
 
+labels = ['Brasil','Alemanha','Australia','China','Espanha','EUA','França','Inglaterra','Italia','Japão', 'Mundo']
+values = [
+    round(100*(float(df_deaths_world['Brazil'][-1])/float(df_cases_world['Brazil'][-1])),2),
+    round(100*(float(df_deaths_world['Germany'][-1])/float(df_cases_world['Germany'][-1])),2),
+    round(100*(float(df_deaths_world['Australia'][-1])/float(df_cases_world['Australia'][-1])),2),
+    round(100*(float(df_deaths_world['China'][-1])/float(df_cases_world['China'][-1])),2),
+    round(100*(float(df_deaths_world['Spain'][-1])/float(df_cases_world['Spain'][-1])),2),
+    round(100*(float(df_deaths_world['US'][-1])/float(df_cases_world['US'][-1])),2),
+    round(100*(float(df_deaths_world['France'][-1])/float(df_cases_world['France'][-1])),2),
+    round(100*(float(df_deaths_world['United Kingdom'][-1])/float(df_cases_world['United Kingdom'][-1])),2),
+    round(100*(float(df_deaths_world['Italy'][-1])/float(df_cases_world['Italy'][-1])),2),
+    round(100*(float(df_deaths_world['Japan'][-1])/float(df_cases_world['Japan'][-1])),2),
+    round(100*(float(df_deaths_world['world'][-1])/float(df_cases_world['world'][-1])),2)
+]
+
+colors = ['lightslategray',] * 11
+colors[10] = 'crimson'
+
+
+fig_bar_world_lethality = go.Figure(data=[
+    go.Bar(x=labels, y=values, text=values, marker_color=colors, name="Letalidade Países")
+])
+
+
+# fig_bar_world_lethality.add_trace(go.Scatter(x=['Brasil', 'Mundo'], y=[round(100*(float(df_deaths_world['world'][-1])/float(df_cases_world['world'][-1])),2),
+#                                     round(100*(float(df_deaths_world['world'][-1])/float(df_cases_world['world'][-1])),2)], name='Letalidade Mundial',
+#                          line=dict(color='crimson', width=2, dash='dot')))
+
+
+fig_bar_world_lethality.add_shape(
+        # Line Vertical
+        dict(
+            type="line",
+            x0=-0.5,
+            y0=round(100*(float(df_deaths_world['world'][-1])/float(df_cases_world['world'][-1])),2),
+            x1=10.5,
+            y1=round(100*(float(df_deaths_world['world'][-1])/float(df_cases_world['world'][-1])),2),
+            line=dict(color='crimson', width=2, dash='dot')
+))
+
+fig_bar_world_lethality.update_layout(legend=dict(x=0, y=1),margin={"r":0,"t":10,"l":0,"b":0})
 
 
 
@@ -582,14 +680,11 @@ with open("index.html", "w") as f:
             </div> ''' )
 
 
-
-
-
-
-
-
-
-
+    #forecasting
+    f.write(add_div([fig_pred_cases,fig_pred_deaths], 2, ["Previsão de novos casos diários",'Previsão de novos óbitos diários']))
+    f.write(add_div([fig_pred_total_cases,fig_pred_total_deaths], 2, ["Previsão do total de casos",'Previsão do total de óbitos']))
+    f.write(add_div(fig_pred_lethality_br, 1, "Previsão da letalidade no Brasil"))
+ 
 
 
     #comparing Brazil and US
@@ -645,7 +740,8 @@ with open("index.html", "w") as f:
 
     f.write(add_div(fig_br_cases_world_cases, 1, "Casos"))
     f.write(add_div(fig_br_deaths_world_deaths, 1, "Óbitos"))
-
+    f.write(add_div(fig_bar_world_lethality, 1, "Letalidade no mundo (%)"))
+    
 
     # end html file
     f.write(
@@ -663,7 +759,7 @@ print("\ncommiting and pushing the new index.html update to github...")
 cmd = 'git add .'
 os.system(cmd)
 # # commiting
-cmd = 'git commit -m "commited at:' + span_updated[1] + '"'
+cmd = 'git commit -m "commited at:' + str(datetime.datetime.now()) + '"'
 os.system(cmd)
 # # pushing
 cmd = 'git push'
