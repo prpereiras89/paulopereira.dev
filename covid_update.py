@@ -316,6 +316,9 @@ def add_div(fig, column, title):
 
 
 
+
+
+
 # # # ---------------------------------- FIGURES ------------------------------------------------
 
 df_deaths = preprocess_df('obitosAcumulado')
@@ -422,6 +425,37 @@ df_lethality.rename(columns={'casosNovo':'Confirmados',
 df_lethality.index.name = None
 df_lethality
 ###--------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+###--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# comparing Brazil with other countries
+# getting the data
+df_cases_world = pd.read_csv("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv", sep=",")
+df_deaths_world = pd.read_csv("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_global.csv", sep=",")
+
+
+#preprocessing the data
+df_cases_world = df_cases_world.drop(['Province/State','Lat','Long'], axis=1).groupby("Country/Region").sum().T
+df_cases_world["world"] = df_cases_world.sum(axis=1)
+df_cases_world = df_cases_world.loc[:, ['Brazil','US','Germany','United Kingdom','Australia','China','France','Italy','Japan','Spain','world']]
+df_cases_world.columns.name = None
+
+df_deaths_world = df_deaths_world.drop(['Province/State','Lat','Long'], axis=1).groupby("Country/Region").sum().T
+df_deaths_world["world"] = df_deaths_world.sum(axis=1)
+df_deaths_world = df_deaths_world.loc[:, ['Brazil','US','Germany','United Kingdom','Australia','China','France','Italy','Japan','Spain','world']]
+df_deaths_world.columns.name = None
+
+
+fig_br_cases_world_cases = fig_n_trace(df_cases_world, ['Brazil','Germany','Australia','China','Spain','US','France','United Kingdom','Italy','Japan'], ['Brasil','Alemanha','Australia','China','Espanha','EUA','França','Inglaterra','Itália','Japão'])
+fig_br_deaths_world_deaths = fig_n_trace(df_deaths_world, ['Brazil','Germany','Australia','China','Spain','US','France','United Kingdom','Italy','Japan'], ['Brasil','Alemanha','Australia','China','Espanha','EUA','França','Inglaterra','Itália','Japão'])
+
+
+
+
+
 
 
 
@@ -548,6 +582,69 @@ with open("index.html", "w") as f:
             </div> ''' )
 
 
+
+
+
+
+
+
+
+
+
+
+    #comparing Brazil and US
+    #header
+    f.write(    
+    '''<div id='header_panel'>
+            <h2>Comparação Brasil x Mundo</h2>
+            <p class="update_p">Atualizado em: ''' + span_updated[1] + '''</p>
+            <p class="update_p">Fonte dos dados: <a href="https://github.com/CSSEGISandData" target="_blank">Johns Hopkins University - USA</a></p>
+            <p style="color:red">OBS: Os dados podem sofrer variações devido à diferença de horário de atualização entre o Ministério da Saúde e a Johns Hopkins University.</p>
+        </div>'''
+    )
+
+    #cards
+    f.write(
+
+
+
+    '''<div class="row row-cols-1 row-cols-md-3">
+                <div class="col mb-4">
+                    <div class="card">
+                    <div class="card-body">
+                        <h5 id="card_case" class="card-title">''' + str(df_cases_world["world"][-1]) + '''</h5>
+                        <p class="card-text card_sub_text">Casos Confirmados no Mundo</p>
+                    </div>
+                    </div>
+                </div> ''' +
+
+
+                '''<div class="col mb-4">
+                    <div class="card">
+                    <div class="card-body">
+                        <h5 id="card_death" class="card-title">''' + str(df_deaths_world["world"][-1]) + '''</h5>
+                        <p class="card-text card_sub_text">Óbitos no Mundo</p>
+                    </div>
+                    </div>
+                </div> ''' +
+
+                '''<div class="col mb-4">
+                    <div class="card">
+                    <div class="card-body">
+                        <h5 id="card_lethality" class="card-title">''' + str(round(100*(float(df_deaths_world["world"][-1])/float(df_cases_world["world"][-1])),2)).replace('.',',') + '''%</h5>
+                        <p class="card-text card_sub_text">Letalidade Mundo</p>
+                    </div>
+                    </div>
+                </div>
+    </div> '''
+
+
+
+    )
+
+
+    f.write(add_div(fig_br_cases_world_cases, 1, "Casos"))
+    f.write(add_div(fig_br_deaths_world_deaths, 1, "Óbitos"))
 
 
     # end html file
