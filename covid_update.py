@@ -303,7 +303,7 @@ def forecasting_arima(df, column):
                         mode='lines+markers',
                         name='Previsão',
                         fill='tozeroy'))
-    fig.update_layout(legend=dict(x=0, y=1),margin={"r":0,"t":10,"l":0,"b":0},title= "Arima(" + str(model.order) + ")")
+    fig.update_layout(legend=dict(x=0, y=1),margin={"r":0,"t":25,"l":0,"b":0},title= "Arima" + str(model.order))
 
     return fig
 ###----------------------------------------------------------------------------------------------------------------------
