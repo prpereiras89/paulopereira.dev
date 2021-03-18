@@ -87,7 +87,7 @@ class ResumePage extends Component {
             <p style={{ textAlign: "justify" }}>
               My main goal is to apply my knowledge of programming, statistics,
               Artificial Intelligence, data wrangling, and data visualiztion in
-              real-world projects. Thus, I will be able to get experience and
+              real-world projects, such as smart cities' ones. Thus, I will be able to get experience and
               improve my abilities as a data science professional.
             </p>
 
@@ -105,7 +105,7 @@ class ResumePage extends Component {
               schoolName={"Universidade Federal de Pernambuco - CIn UFPE"}
               position={"Ph.D in Computer Science"}
               schoolDescription={
-                "Thesis (temporary): Performability Evaluation of Object Detection systems in Edge and Fog Environments"
+                "Thesis (temporary): Analytical and Hierarchical Models for Availability and Performance Evaluation of Edge-Fog-Cloud Continuum Applications"
               }
             />
 
@@ -144,7 +144,18 @@ class ResumePage extends Component {
                 width: "75%",
               }}
             />
+
             <h2 style={{ fontFamily: "Oxygen, sans-serif" }}>Experience</h2>
+            <Experience
+              startYear={2020}
+              endYear={"Present"}
+              position={"IT Analyst - Smart City Specialist, Universidade Federal Rural de Pernambuco - UFRPE."}
+              place={"Pernambuco, Brazil"}
+              jobDescription={
+                "Planning and developing smart campus and smart city projects, using IoT and AI."
+              }
+              relevantSkills={["Python (Tensorflow, Keras, Pytorch, Pandas, Scikit, etc.)", "IoT Platform (Dojot, Fiware)", "Machine Learning (Deep Learning)", "Data Science"]}
+            />
             <Experience
               startYear={2017}
               endYear={"Present"}

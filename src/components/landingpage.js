@@ -11,6 +11,7 @@ class LandingPage extends Component {
             <img className="profile-pic" src={pp_rounded} alt="profile pic" />
             <div className="banner-text" style={{ marginBottom: "50px" }}>
               <h1>Paulo Pereira</h1>
+              <h2 style={{marginBottom: '0px'}}>IT Analyst at UFRPE</h2>
               <h2>Ph.D. Student</h2>
               <hr />
               <p>

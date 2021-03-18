@@ -20,6 +20,48 @@ class PublicationsPage extends Component {
             <h3 style={{ fontFamily: "Oxygen, sans-serif" }}>Journals</h3>
             {/** Journals*/}
             <Papers
+              year={2021}
+              title={
+                "Analytical models for availability evaluation of edge and fog computing nodes"
+              }
+              link={
+                "https://link.springer.com/article/10.1007/s11227-021-03672-0"
+              }
+              metaData={"The Journal of Supercomputing"}
+              abstract={
+                "Although cloud computing environments increase availability, reliability, and performance, many emerging technologies demand latency-aware networks for real-time data processing. For instance, the Internet of Things environments are composed of many connected devices that generate data for applications, where many of them are latency-sensitive, such as facial recognition security systems in airports or train stations. To overcome the latency of the cloud infrastructure, researchers introduced the edge and fog computing paradigms in order to increase computing power between the cloud and devices. In this study, we propose analytical availability models; also, we evaluate the availability of physical edge and fog nodes running applications. To finish, we perform a capacity-oriented availability and a cost evaluation comparing edge and fog environments. Some of the results show that we can improve the availability from 2.96 number of nines to 5.93, by using our analytical models to plan the infrastructure. These models aim at supporting engineers and analysts to plan fault-tolerant edge and fog environments."
+              }
+            />
+
+            <Papers
+              year={2021}
+              title={
+                "Distributed application provisioning over Ethereum-based private and permissioned blockchain: availability modeling, capacity, and costs planning"
+              }
+              link={
+                "https://link.springer.com/article/10.1007/s11227-020-03617-z"
+              }
+              metaData={"The Journal of Supercomputing"}
+              abstract={
+                "Blockchain and cloud computing are two of the main topics related to the distributed computing paradigm, and in the last decade, they have seen exponential growth in their adoption. Cloud computing has long been established as the main mechanism to test, develop, and deliver new applications and services in a distributed manner across the World Wide Web. Large data centers host many services and store petabytes of user data. Infrastructure and services owners rule the access to data and may even be able to change contents and attest to its veracity. Blockchain is a step towards a future where the user’s data are considered safer, besides being public. Advances in blockchain-based technologies, now, support service provisioning over permissioned and private infrastructures. Therefore, organizations or groups of individuals may share information, service even if they do not trust each other, besides supporting infrastructure management tasks. This paper presents and evaluates models for assessing the availability and capacity-oriented availability of cloud computing infrastructures. It aims at running blockchain’s distributed applications based on the Ethereum blockchain platform and the required expenses to perform service delivery in public and private infrastructures. Most of the obtained results also apply to other blockchains-based platforms."
+              }
+            />
+
+            <Papers
+              year={2020}
+              title={
+                "Dependability Impact in the Smart Solar Power Systems: An Analysis of Smart Buildings"
+              }
+              link={
+                "https://www.mdpi.com/1996-1073/14/1/124"
+              }
+              metaData={"Energies"}
+              abstract={
+                "The Internet has been going through significant transformations and changing the world around us. We can also see the Internet to be used in many areas, for innumerable purposes, and, currently, it is even used by objects. This evolution leads to the Internet of Things (IoT) paradigm. This new concept can be defined as a system composed of storage resources, sensor devices, controllers, applications, and network infrastructure, in order to provide specific services to its users. Since IoT comprises heterogeneous components, the creation of these systems, the communication, and maintenance of their components became a complex task. In this paper, we present a dependability model to evaluate an IoT system. Amid different systems, we chose to assess availability in a smart building. The proposed models allow us to calculate estimations of other measures besides steady-state availability, such as reliability. Thus, it was possible to notice that there was no considerable gain of availability in the system when applying grid-tie solar power or off-grid solar power. The grid-tie solar power system is cheaper than the off-grid solar power system, even though it produces more energy. However, in our research, we were able to observe that the off-grid solar power system recovers the applied financial investment in smaller interval of time."
+              }
+            />
+
+            <Papers
               year={2020}
               title={
                 "Stochastic performance model for web server capacity planning in fog computing"

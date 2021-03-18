@@ -62,7 +62,6 @@ class ContactPage extends Component {
                     style={{
                       fontSize: "25px",
                       fontFamily: "Anton",
-                      marginBottom: "100px",
                     }}
                   >
                     <i class="fab fa-linkedin" />
@@ -72,10 +71,48 @@ class ContactPage extends Component {
                       rel="noopener noreferrer"
                       style={{ color: "black", textDecoration: "none" }}
                     >
-                      Paulo Pereira
+                      LinkedIn
                     </a>
                   </ListItemContent>
                 </ListItem>
+                <ListItem>
+                  <ListItemContent
+                    style={{
+                      fontSize: "25px",
+                      fontFamily: "Anton",
+                    }}
+                  >
+                    <i class="fa fa-address-card" />
+                    <a
+                      href="http://lattes.cnpq.br/7559988987817463"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style={{ color: "black", textDecoration: "none" }}
+                    >
+                      Lattes Resume
+                    </a>
+                  </ListItemContent>
+                </ListItem>
+                <ListItem>
+                  <ListItemContent
+                    style={{
+                      fontSize: "25px",
+                      fontFamily: "Anton",
+                      marginBottom: "100px",
+                    }}
+                  >
+                    <i class="fab fa-google" />
+                    <a
+                      href="https://scholar.google.com.br/citations?user=mREVZ3wAAAAJ&hl=pt-BR"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style={{ color: "black", textDecoration: "none" }}
+                    >
+                      Google Scholar
+                    </a>
+                  </ListItemContent>
+                </ListItem>
+
               </List>
             </div>
           </Cell>

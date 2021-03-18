@@ -234,7 +234,7 @@ class ProjectsPage extends Component {
           onChange={(tabId) => this.setState({ activeTab: tabId })}
           ripple
         >
-          <Tab>Cloud Computing</Tab>
+          <Tab>Edge-Fog-Cloud Computing</Tab>
           <Tab>Data Science</Tab>
           <Tab>Computational Vision</Tab>
           <Tab>Miscellaneous</Tab>
