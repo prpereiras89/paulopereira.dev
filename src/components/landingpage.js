@@ -15,8 +15,7 @@ class LandingPage extends Component {
               <h2>Ph.D. Student</h2>
               <hr />
               <p>
-                Data Science | Artificial Intelligence | Statistical Learning |
-                Computional Vision | Cloud Computing | Computional Modeling
+                Data Science | Artificial Intelligence | Cloud Computing | Computional Modeling
               </p>
               <div className="social-links">
                 {/* LinkedIn */}

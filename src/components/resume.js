@@ -215,7 +215,7 @@ class ResumePage extends Component {
                 color: "white",
               }}
             >
-              Clik here to go to publications' Page
+              Click here to go to publications' Page
             </Link>
             <hr
               style={{
@@ -231,8 +231,8 @@ class ResumePage extends Component {
             <Skills skill={"Artificial Intelligence"} progress={70} />
             <Skills skill={"Markov Chains"} progress={70} />
             <Skills skill={"Python"} progress={80} />
-            <Skills skill={"Django"} progress={10} />
-            <Skills skill={"React"} progress={25} />
+            <Skills skill={"Django"} progress={50} />
+            <Skills skill={"React"} progress={10} />
           </Cell>
         </Grid>
       </div>
