@@ -20,7 +20,7 @@ class LandingPage extends Component {
               <div className="social-links">
                 {/* LinkedIn */}
                 <a
-                  href="https://www.linkedin.com/in/paulo-pereira-prps"
+                  href="https://www.linkedin.com/in/ppereiradev"
                   rel="noopener noreferrer"
                   target="_blank"
                 >
@@ -28,7 +28,7 @@ class LandingPage extends Component {
                 </a>
                 {/* Github */}
                 <a
-                  href="https://github.com/prpereiras89"
+                  href="https://github.com/ppereiradev"
                   rel="noopener noreferrer"
                   target="_blank"
                 >

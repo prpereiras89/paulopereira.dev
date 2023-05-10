@@ -53,7 +53,7 @@ class ContactPage extends Component {
                     }}
                   >
                     <i class="fas fa-envelope-square" />
-                    prpereiras89@gmail.com
+                    ppereira.dev@gmail.com
                   </ListItemContent>
                 </ListItem>
 
@@ -66,7 +66,7 @@ class ContactPage extends Component {
                   >
                     <i class="fab fa-linkedin" />
                     <a
-                      href="https://www.linkedin.com/in/paulo-pereira-prps"
+                      href="https://www.linkedin.com/in/ppereiradev"
                       target="_blank"
                       rel="noopener noreferrer"
                       style={{ color: "black", textDecoration: "none" }}

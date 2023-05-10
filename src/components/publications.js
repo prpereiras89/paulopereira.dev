@@ -22,6 +22,20 @@ class PublicationsPage extends Component {
             <Papers
               year={2022}
               title={
+                "A performance modeling framework for microservices-based cloud infrastructures"
+              }
+              link={
+                "https://link.springer.com/article/10.1007/s11227-022-04967-6"
+              }
+              metaData={"The Journal of Supercomputing"}
+              abstract={
+                "Microservice architectures (MSAs) can increase the performance of distributed systems and enable better resource allocation by sharing underlying resources among multiple microservices (MSs). One of the main advantages of MSAs is the ability to leverage the elasticity provided by an infrastructure so that only the most demanding services are scaled, which can contribute to efficient allocation of processing resources. A major problem in allocating resources to microservices is determining a set of auto-scaling parameters that will result in all microservices meeting specific service level agreements (SLAs). Since the space of feasible configurations can be vast, manually determining a combination of parameter values that will result in all SLAs being met is complex and time consuming. In addition, the performance overhead caused by running microservices concurrently and the overhead caused by the VM instantiation process must also be evaluated. Another problem is that microservices can suffer performance degradation due to resource contention, which depends on how microservices are distributed across servers. To address the aforementioned issues, this paper proposes the modeling of these infrastructures and their auto-scaling mechanisms in a private cloud using stochastic Petri nets (SPNs), the non-dominated sorting genetic algorithm II (NSGA-II), one of the most popular evolutionary algorithms for multiobjective optimization (MOO), and random forest regression (RFR), an ensemble-learning-based method, to identify critical trade-offs between performance and resource consumption considering all deployed MSs. The SPN-based model is capable of representing both instantiation of elastic VMs and a pool of instantiated elastic VMs where only containers are started. The analytical framework enables service providers (SPs) to estimate performance metrics considering configurations that satisfy all performance constraints, use of elastic VMs, discard rate, discard probability, throughput, response time, and corresponding cumulative distribution functions (CDFs). These metrics are critical because they make it possible to estimate the time required to process each request, the number of requests processed in a time interval, the number of requests rejected, and the utilization of resources. The framework was validated with 95% confidence interval (CI) using a real-world testbed. Two case studies were used to investigate its feasibility by evaluating its application in a real scenario. We noticed a significant improvement in performance when using a pool of elastic VMs, where throughput improved by 21.5% and the number of discarded requests decreased by 70%. The application of the framework can help in finding optimized solutions that support both infrastructure planning and online performance prediction, and enable trade-off analyses considering different scenarios and constraints."
+              }
+            />
+
+            <Papers
+              year={2022}
+              title={
                 "Availability model for edge-fog-cloud continuum: an evaluation of an end-to-end infrastructure of intelligent traffic management service"
               }
               link={
@@ -46,7 +60,7 @@ class PublicationsPage extends Component {
                 "Cloud computing provides an abstraction of the physical tiers, allowing a sense of infinite resources. However, the physical resources are not unlimited and need to be used more assertively. The challenge of cloud computing is to improve the use of resources without jeopardizing the availability of environments. Stochastic models can efficiently evaluate cloud computing systems, which is needed for proper capacity planning. This paper proposes an availability evaluation from a system hosted on a private cloud. To achieve this goal, we created hierarchical models to represent the studied environment. Sensitivity analysis is performed to identify the most influential parameters and components that must be compatible with improving system availability. A case study supports the demonstration of the accuracy and utility of our methodology. We propose structural changes in the environment using different redundancies in the components to obtain satisfactory results. Finally, we analyze scenarios regarding DC’s redundancy."
               }
             />
-            
+
             <Papers
               year={2022}
               title={
@@ -60,7 +74,7 @@ class PublicationsPage extends Component {
                 "Through the blockchain-as-a-service paradigm, one can provide the infrastructure required to host blockchain-based applications regarding performance and dependability-related attributes. Many works evaluated issues and mitigated them to reach a high throughput or better downtime and availability indexes. However, to the best of our acknowledgment, studies regarding both characteristics are yet to be performed. This paper presents a performance evaluation of a private infrastructure hosting a blockchain-based application. As we monitored the system, we noticed some increase in resource consumption that may be associated with software aging issues on the hyperledger fabric platform or its basic components. Also, the impact of this resource increment on the probability of the system being operational has been evaluated. When consumption issues were considered, one of the transaction types increased the RAM consumption by almost 80% in less than 3 h, reducing the system availability to 98.17%. For scenarios without resource increment issues on the infrastructure, the availability reached 99.35%, with an annual downtime of 56.43 h."
               }
             />
-            
+
             <Papers
               year={2022}
               title={
@@ -88,7 +102,7 @@ class PublicationsPage extends Component {
                 "Although cloud computing environments increase availability, reliability, and performance, many emerging technologies demand latency-aware networks for real-time data processing. For instance, the Internet of Things environments are composed of many connected devices that generate data for applications, where many of them are latency-sensitive, such as facial recognition security systems in airports or train stations. To overcome the latency of the cloud infrastructure, researchers introduced the edge and fog computing paradigms in order to increase computing power between the cloud and devices. In this study, we propose analytical availability models; also, we evaluate the availability of physical edge and fog nodes running applications. To finish, we perform a capacity-oriented availability and a cost evaluation comparing edge and fog environments. Some of the results show that we can improve the availability from 2.96 number of nines to 5.93, by using our analytical models to plan the infrastructure. These models aim at supporting engineers and analysts to plan fault-tolerant edge and fog environments."
               }
             />
-            
+
             <Papers
               year={2021}
               title={

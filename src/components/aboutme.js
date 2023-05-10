@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Grid, Cell } from "react-mdl";
-import { Deck } from "./deck";
+import Deck from "./deck";
+import PHOTOS from './photos.json'
 
 class AboutPage extends Component {
   render() {
@@ -113,7 +114,7 @@ class AboutPage extends Component {
               }}
             >
               <div id="photo-deck">
-                <Deck />
+                <Deck cards={PHOTOS} />
               </div>
             </Cell>
           </Cell>

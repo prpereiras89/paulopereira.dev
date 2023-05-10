@@ -53,7 +53,7 @@ class ProjectsPage extends Component {
                 </CardText>
                 <CardActions border>
                   <Button
-                    href="https://github.com/prpereiras89/hybrid-autoscaling"
+                    href="https://github.com/ppereiradev/hybrid-autoscaling"
                     target="_blank"
                     colered
                   >
@@ -103,7 +103,7 @@ class ProjectsPage extends Component {
                 </CardText>
                 <CardActions border>
                   <Button
-                    href="https://github.com/prpereiras89/predictor"
+                    href="https://github.com/ppereiradev/predictor"
                     target="_blank"
                     colered
                   >
@@ -147,7 +147,7 @@ class ProjectsPage extends Component {
                 </CardText>
                 <CardActions border>
                   <Button
-                    href="https://github.com/prpereiras89/fault-injector"
+                    href="https://github.com/ppereiradev/fault-injector"
                     target="_blank"
                     colered
                   >
@@ -208,7 +208,7 @@ class ProjectsPage extends Component {
                 </CardText>
                 <CardActions border>
                   <Button
-                    href="https://github.com/prpereiras89/memoryleaksimulator"
+                    href="https://github.com/ppereiradev/memoryleaksimulator"
                     target="_blank"
                     colered
                   >

@@ -226,13 +226,12 @@ class ResumePage extends Component {
             />
             <h2 style={{ fontFamily: "Oxygen, sans-serif" }}>Skills</h2>
             <Skills skill={"Statistics"} progress={90} />
-            <Skills skill={"Statistical Learning"} progress={85} />
             <Skills skill={"Time Series"} progress={85} />
             <Skills skill={"Artificial Intelligence"} progress={70} />
-            <Skills skill={"Markov Chains"} progress={70} />
-            <Skills skill={"Python"} progress={80} />
-            <Skills skill={"Django"} progress={50} />
-            <Skills skill={"React"} progress={10} />
+            <Skills skill={"Python"} progress={95} />
+            <Skills skill={"Django"} progress={80} />
+            <Skills skill={"FastAPI"} progress={80} />
+            <Skills skill={"React"} progress={70} />
           </Cell>
         </Grid>
       </div>
