@@ -18,7 +18,7 @@ class ContactPage extends Component {
             />
             <h2>Paulo Pereira</h2>
             <p style={{ width: "75%", margin: "auto", paddingTop: "1em" }}>
-              I have a Ph.D. in computer science at Federal University of
+              I have a Ph.D. in computer science from Universidade Federal de
               Pernambuco in Brazil. My skills are software development mainly
               with Python and Java, computer networks, cloud, fog and edge
               computing, IoT, time series forecast (Python and R), performance

@@ -29,7 +29,7 @@ class ResumePage extends Component {
                 Paulo Pereira
               </h2>
               <h4 style={{ fontFamily: "Oxygen, sans-serif", color: "grey" }}>
-                Ph.D. Computer Science
+                Ph.D. in Computer Science
               </h4>
               <hr
                 style={{
@@ -48,7 +48,7 @@ class ResumePage extends Component {
                   fontFamily: "Oxygen, sans-serif",
                 }}
               >
-                I have a Ph.D. in computer science at Federal University of
+                I have a Ph.D. in computer science from Universidade Federal de
                 Pernambuco in Brazil. My skills are software development,
                 computer networks, cloud and fog computing, time series
                 forecast, performance and availability evaluations, analytical
@@ -101,11 +101,11 @@ class ResumePage extends Component {
             {/** Phd */}
             <Education
               startYear={2019}
-              endYear={"Present"}
+              endYear={2023}
               schoolName={"Universidade Federal de Pernambuco - CIn UFPE"}
               position={"Ph.D in Computer Science"}
               schoolDescription={
-                "Thesis (temporary): Analytical and Hierarchical Models for Availability and Performance Evaluation of Edge-Fog-Cloud Continuum Applications"
+                "Thesis: Edge-Fog-Cloud Continuum Applications: Analytical and Hierarchical Models for Availability and Performability Evaluation"
               }
             />
 

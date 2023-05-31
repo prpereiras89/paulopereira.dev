@@ -26,7 +26,7 @@ class AboutPage extends Component {
                 the whole world, also known as Brasília, which is the capital of
                 Brazil. Currently, I am living in Recife, an awesome city,
                 located in Pernambuco along the Northeast coast of Brazil.
-                I accomplished Ph.D. in computer science at the
+                I have a Ph.D. in computer science from
                 Universidade Federal de Pernambuco, which is the same place
                 where I got my Master's degree also in computer science. During
                 my bachelor's degree, I had the opportunity of being an exchange
