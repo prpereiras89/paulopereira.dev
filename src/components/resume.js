@@ -48,7 +48,7 @@ class ResumePage extends Component {
                   fontFamily: "Oxygen, sans-serif",
                 }}
               >
-                I am a PhD computer science student at Federal University of
+                I have a Ph.D. in computer science at Federal University of
                 Pernambuco in Brazil. My skills are software development,
                 computer networks, cloud and fog computing, time series
                 forecast, performance and availability evaluations, analytical

@@ -25,8 +25,8 @@ class AboutPage extends Component {
                 My name is Paulo Pereira, I am from the most beautiful city in
                 the whole world, also known as Brasília, which is the capital of
                 Brazil. Currently, I am living in Recife, an awesome city,
-                located in Pernambuco along the Northeast coast of Brazil. At
-                the moment, I am getting my Ph.D. in computer science at the
+                located in Pernambuco along the Northeast coast of Brazil.
+                I accomplished Ph.D. in computer science at the
                 Universidade Federal de Pernambuco, which is the same place
                 where I got my Master's degree also in computer science. During
                 my bachelor's degree, I had the opportunity of being an exchange
@@ -44,7 +44,7 @@ class AboutPage extends Component {
 
             <div style={{ textIndent: "2em" }}>
               <p>
-                So, talking a little bit about my Ph.D., I am researching about
+                So, talking a little bit about my Ph.D., I researched about
                 modeling the availability and performance of object detection in
                 edge and fog computing environments. So far, in the literature,
                 there is not a clear-cut difference between fog and edge
