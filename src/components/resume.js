@@ -168,7 +168,7 @@ class ResumePage extends Component {
             />
             <Experience
               startYear={2022}
-              endYear={202}
+              endYear={2022}
               position={
                 "Instructor Assistant in Embraer Course"
               }
