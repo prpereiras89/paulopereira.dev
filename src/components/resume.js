@@ -147,8 +147,18 @@ class ResumePage extends Component {
 
             <h2 style={{ fontFamily: "Oxygen, sans-serif" }}>Experience</h2>
             <Experience
-              startYear={2020}
+              startYear={2022}
               endYear={"Present"}
+              position={"Research Professor, Instituto Federal da Paraíba - IFPB."}
+              place={"Pernambuco, Brazil"}
+              jobDescription={
+                "Teaching and researching about computer science, IoT, and AI."
+              }
+              relevantSkills={["Data Structures and Algorithms", "IoT", "Machine Learning (Deep Learning)", "Data Science"]}
+            />
+            <Experience
+              startYear={2020}
+              endYear={2022}
               position={"IT Analyst - Smart City Specialist, Universidade Federal Rural de Pernambuco - UFRPE."}
               place={"Pernambuco, Brazil"}
               jobDescription={
@@ -157,8 +167,24 @@ class ResumePage extends Component {
               relevantSkills={["Python (Tensorflow, Keras, Pytorch, Pandas, Scikit, etc.)", "IoT Platform (Dojot, Fiware)", "Machine Learning (Deep Learning)", "Data Science"]}
             />
             <Experience
+              startYear={2022}
+              endYear={202}
+              position={
+                "Instructor Assistant in Embraer Course"
+              }
+              place={"Pernambuco, Brazil"}
+              jobDescription={
+                "Supporting and teaching Embraer's engineers to error correction algorithms"
+              }
+              relevantSkills={[
+                "Python",
+                "Algorithms",
+                "Public Speaking",
+              ]}
+            />
+            <Experience
               startYear={2017}
-              endYear={"Present"}
+              endYear={2023}
               position={"System Developer, MoDCS Research Group."}
               place={"Pernambuco, Brazil"}
               jobDescription={
@@ -166,7 +192,6 @@ class ResumePage extends Component {
               }
               relevantSkills={["Java", "Analytical Modeling, Simulation"]}
             />
-
             <Experience
               startYear={2012}
               endYear={2014}
@@ -181,7 +206,6 @@ class ResumePage extends Component {
                 "Teamwork",
               ]}
             />
-
             <Experience
               startYear={2013}
               endYear={2013}
