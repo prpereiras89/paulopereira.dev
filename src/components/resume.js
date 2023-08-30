@@ -150,9 +150,9 @@ class ResumePage extends Component {
               startYear={2022}
               endYear={"Present"}
               position={"Research Professor, Instituto Federal da Paraíba - IFPB."}
-              place={"Pernambuco, Brazil"}
+              place={"Paraíba, Brazil"}
               jobDescription={
-                "Teaching and researching about computer science, IoT, and AI."
+                "Teaching and researching about Computer Science, IoT, and AI."
               }
               relevantSkills={["Data Structures and Algorithms", "IoT", "Machine Learning (Deep Learning)", "Data Science"]}
             />
