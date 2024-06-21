@@ -1,7 +1,6 @@
-FROM node:14-alpine AS development
-ENV NODE_ENV development
+FROM node:latest
 # Add a work directory
-WORKDIR /app
+WORKDIR /my-site
 # Cache and Install dependencies
 COPY package.json .
 COPY package-lock.json .

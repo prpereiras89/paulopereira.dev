@@ -1,15 +1,12 @@
-version: "3.8"
-
 services:
   app:
-    container_name: app-dev
-    image: app-dev
+    container_name: ppereiradev-site
+    image: ppereiradev-site
     stdin_open: true # docker run -i
     tty: true        # docker run -t
     build:
       context: .
-      target: development
     volumes:
-      - ./src:/app/src
+      - ./my-site:/my-site
     ports:
       - 3000:3000
