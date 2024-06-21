@@ -1,11 +1,10 @@
 services:
   app:
-    container_name: ppereiradev-site
-    image: ppereiradev-site
-    stdin_open: true # docker run -i
-    tty: true        # docker run -t
     build:
       context: .
+    container_name: ppereiradev-site
+    stdin_open: true # docker run -i
+    tty: true        # docker run -t
     volumes:
       - ./my-site:/my-site
     ports:
